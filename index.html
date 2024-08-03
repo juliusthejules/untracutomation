@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+.    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untracutomation - Untraceable Automator</title>
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
+</head>
+<body>
+
+<h1>Untracutomation</h1>
+    <p>This page runs a Python script to simulate system-level commands.</p>
+    
+    <py-script>
+import js
+
+def execute_commands():
+    output = ""
+    commands = [
+        "Simulating: chmod +x config.sh",
+        "Simulating: sudo ifconfig eth0 down",
+        "Simulating: sudo ifconfig eth0 inet 127.0.0.1",
+        "Simulating: sudo ifconfig eth0 inet6 add ::1/128",
+        "Simulating: sudo nmcli con mod eth0 ipv4.dns 127.0.0.1",
+        "Simulating: sudo nmcli con mod eth0 ipv6.dns ::1",
+        "Simulating: sudo hostnamectl set-hostname 127.0.0.1",
+        "Simulating: sudo ifconfig eth0 hw ether 00:00:00:00:00:00",
+        "Simulating: sudo hciconfig hci0 down",
+        "Simulating: sudo hciconfig hci0 up",
+        "Simulating: sudo hciconfig hci0 name localhost",
+        "Simulating: sudo hciconfig hci0 piscan",
+        "Simulating: sudo systemctl stop ModemManager",
+        "Simulating: sudo iptables -A OUTPUT -p icmp --icmp-type echo-request -j DROP",
+        "Simulating: sudo iptables -A INPUT -j DROP",
+        "Simulating: Clearing browser cache for Chrome, Firefox, Brave, Vivaldi, Chromium, DuckDuckGo",
+        "Simulating: Installing cryptsetup",
+        "Simulating: sudo cryptsetup luksOpen /dev/sdX cryptdisk",
+        "Simulating: sudo mkfs.ext4 /dev/mapper/cryptdisk",
+        "Simulating: sudo mount /dev/mapper/cryptdisk /mnt",
+        "Simulating: Encrypting browser profiles"
+    ]
+    
+    for command in commands:
+        output += f"{command}\n"
+    
+    js.console.log(output)
+    return output
+
+output = execute_commands()
+element = js.document.createElement("pre")
+element.innerText = output
+js.document.body.appendChild(element)
+    </py-script>
+
+    <script type="text/x-python" title="Untracutomation">
+import os
+import subprocess
+
+def execute_commands():
+    # Unix-based Untracutomation
+
+    # Network Settings
+    subprocess.run(["sudo", "ifconfig", "eth0", "down"])  # Mask IPv4 and IPv6 addresses
+
+    # Network Configuration
+    subprocess.run(["sudo", "ifconfig", "eth0", "inet", "127.0.0.1"])  # Assign localhost IPv4 address
+    subprocess.run(["sudo", "ifconfig", "eth0", "inet6", "add", "::1/128"])  # Assign localhost IPv6 address
+    subprocess.run(["sudo", "nmcli", "con", "mod", "eth0", "ipv4.dns", "127.0.0.1"])  # Set primary DNS to localhost IPv4 address
+    subprocess.run(["sudo", "nmcli", "con", "mod", "eth0", "ipv6.dns", "::1"])  # Set secondary DNS to localhost IPv6 address
+
+    # Hostname
+    subprocess.run(["sudo", "hostnamectl", "set-hostname", "127.0.0.1"])  # Change hostname to localhost
+
+    # MAC Address
+    subprocess.run(["sudo", "ifconfig", "eth0", "hw", "ether", "00:00:00:00:00:00"])  # Change MAC address to all zeros
+
+    # Bluetooth Address
+    subprocess.run(["sudo", "hciconfig", "hci0", "down"])  # Disable Bluetooth interface
+    subprocess.run(["sudo", "hciconfig", "hci0", "up"])  # Enable Bluetooth interface
+    subprocess.run(["sudo", "hciconfig", "hci0", "name", "localhost"])  # Change Bluetooth name
+    subprocess.run(["sudo", "hciconfig", "hci0", "piscan"])  # Enable Bluetooth discovery
+
+    # Location Services
+    subprocess.run(["sudo", "systemctl", "stop", "ModemManager"])  # Disable location and geolocation
+
+    # Firewall
+    subprocess.run(["sudo", "iptables", "-A", "OUTPUT", "-p", "icmp", "--icmp-type", "echo-request", "-j", "DROP"])  # Close pings
+    subprocess.run(["sudo", "iptables", "-A", "INPUT", "-j", "DROP"])  # Block all ingress traffic
+
+    # Browser Cleanup
+    subprocess.run(["google-chrome", "--clear-cache", "--clear-cookies"], stdout=subprocess.DEVNULL)  # Clear browser cookies and cache for Chrome
+    subprocess.run(["firefox", "--clear-cache", "--clear-cookies"], stdout=subprocess.DEVNULL)  # Clear browser cookies and cache for Firefox
+    subprocess.run(["brave-browser", "--clear-cache", "--clear-cookies"], stdout=subprocess.DEVNULL)  # Clear browser cookies and cache for Brave
+    subprocess.run(["vivaldi", "--clear-cache", "--clear-cookies"], stdout=subprocess.DEVNULL)  # Clear browser cookies and cache for Vivaldi
+    subprocess.run(["chromium", "--clear-cache", "--clear-cookies"], stdout=subprocess.DEVNULL)  # Clear browser cookies and cache for Chromium
+    subprocess.run(["ddg-browser", "--clear-cache", "--clear-cookies"], stdout=subprocess.DEVNULL)  # Clear browser cookies and cache for DuckDuckGo
+
+    # Disk Encryption
+    subprocess.run(["sudo", "apt-get", "install", "-y", "cryptsetup"])  # Install cryptsetup
+    subprocess.run(["sudo", "cryptsetup", "luksOpen", "/dev/sdX", "cryptdisk"])  # Open LUKS encrypted disk
+    subprocess.run(["sudo", "mkfs.ext4", "/dev/mapper/cryptdisk"])  # Create filesystem on encrypted disk
+    subprocess.run(["sudo", "mount", "/dev/mapper/cryptdisk", "/mnt"])  # Mount encrypted disk
+
+    # Browser Encryption
+    os.makedirs(os.path.expanduser("~/.mozilla/firefox/encrypted-profile"), exist_ok=True)
+    subprocess.run(["encfs", os.path.expanduser("~/.mozilla/firefox/encrypted-profile"), os.path.expanduser("~/.mozilla/firefox/profile")])  # Mount encrypted Firefox profile
+    subprocess.run(["mv", os.path.expanduser("~/.mozilla/firefox/profile"), os.path.expanduser("~/.mozilla/firefox/plain-profile")])  # Move existing Firefox profile to plain directory
+    os.symlink(os.path.expanduser("~/.mozilla/firefox/encrypted-profile"), os.path.expanduser("~/.mozilla/firefox/profile"))  # Link encrypted profile to Firefox profile directory
+    os.makedirs(os.path.expanduser("~/.config/google-chrome/encrypted-profile"), exist_ok=True)
+    subprocess.run(["encfs", os.path.expanduser("~/.config/google-chrome/encrypted-profile"), os.path.expanduser("~/.config/google-chrome/Default")])  # Mount encrypted Chrome profile
+    subprocess.run(["mv", os.path.expanduser("~/.config/google-chrome/Default"), os.path.expanduser("~/.config/google-chrome/plain-profile")])  # Move existing Chrome profile to plain directory
+    os.symlink(os.path.expanduser("~/.config/google-chrome/encrypted-profile"), os.path.expanduser("~/.config/google-chrome/Default"))  # Link encrypted profile to Chrome profile directory
+    os.makedirs(os.path.expanduser("~/.config/brave-browser/encrypted-profile"), exist_ok=True)
+    subprocess.run(["encfs", os.path.expanduser("~/.config/brave-browser/encrypted-profile"), os.path.expanduser("~/.config/brave-browser/Default")])  # Mount encrypted Brave profile
+    subprocess.run(["mv", os.path.expanduser("~/.config/brave-browser/Default"), os.path.expanduser("~/.config/brave-browser/plain-profile")])  # Move existing Brave profile to plain directory
+    os.symlink(os.path.expanduser("~/.config/brave-browser/encrypted-profile"), os.path.expanduser("~/.config/brave-browser/Default"))  # Link encrypted profile to Brave profile directory
+    os.makedirs(os.path.expanduser("~/.config/vivaldi/encrypted-profile"), exist_ok=True)
+    subprocess.run(["encfs", os.path.expanduser("~/.config/vivaldi/encrypted-profile"), os.path.expanduser("~/.config/vivaldi/Default")])  # Mount encrypted Vivaldi profile
+    subprocess.run(["mv", os.path.expanduser("~/.config/vivaldi/Default"), os.path.expanduser("~/.config/vivaldi/plain-profile")])  # Move existing Vivaldi profile to plain directory
+    os.symlink(os.path.expanduser("~/.config/vivaldi/encrypted-profile"), os.path.expanduser("~/.config/vivaldi/Default"))  # Link encrypted profile to Vivaldi profile directory
+    os.makedirs(os.path.expanduser("~/.config/duckduckgo-browser/encrypted-profile"), exist_ok=True)
+    subprocess.run(["encfs", os.path.expanduser("~/.config/duckduckgo-browser/encrypted-profile"), os.path.expanduser("~/.config/duckduckgo-browser/Default")])  # Mount encrypted DuckDuckGo profile
+    subprocess.run(["mv", os.path.expanduser("~/.config/duckduckgo-browser/Default"), os.path.expanduser("~/.config/duckduckgo-browser/plain-profile")])  # Move existing DuckDuckGo profile to plain directory
+    os.symlink(os.path.expanduser("~/.config/duckduckgo-browser/encrypted-profile"), os.path.expanduser("~/.config/duckduckgo-browser/Default"))  # Link encrypted profile to DuckDuckGo profile directory
+
+# Execute the commands
+execute_commands()
+    </script>
+   
+</body>
+</html>
