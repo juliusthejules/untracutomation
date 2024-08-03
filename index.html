@@ -6,6 +6,27 @@
     <title>Untracutomation - Untraceable Automator</title>
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
+
+    <!--PWA Begin-->
+<link rel="icon" sizes="192x192" href="/icon-192x192.png">
+<link rel="icon" sizes="256x256" href="/icon-256x256.png">
+<link rel="icon" sizes="384x384" href="/icon-384x384.png">
+<link rel="icon" sizes="512x512" href="/icon-512x512.png">
+<link rel="manifest" href="/app.webmanifest">
+
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(function(registration) {
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function(error) {
+                console.log('ServiceWorker registration failed: ', error);
+            });
+        });
+    }
+</script>
+<!--PWA End-->
+    
 </head>
 <body>
 
