@@ -28,53 +28,12 @@
 <!--PWA End-->
     
 </head>
-<body>
+<body style="border: solid black; width: 100%;">
 
 <h1 style="background-color: #000000; color: #FFFFFF; text-align: center; width: 100%;">Untracutomation</h1>
 
     <div style="text-align: center; width: 100%; background-color: lightgrey; color: #000000;">
-    <p>This page runs a Python script to simulate system-level commands.</p>
-    
-    <py-script>
-import js
-
-def execute_commands():
-    output = ""
-    commands = [
-        "Simulating: chmod +x config.sh",
-        "Simulating: sudo ifconfig eth0 down",
-        "Simulating: sudo ifconfig eth0 inet 127.0.0.1",
-        "Simulating: sudo ifconfig eth0 inet6 add ::1/128",
-        "Simulating: sudo nmcli con mod eth0 ipv4.dns 127.0.0.1",
-        "Simulating: sudo nmcli con mod eth0 ipv6.dns ::1",
-        "Simulating: sudo hostnamectl set-hostname 127.0.0.1",
-        "Simulating: sudo ifconfig eth0 hw ether 00:00:00:00:00:00",
-        "Simulating: sudo hciconfig hci0 down",
-        "Simulating: sudo hciconfig hci0 up",
-        "Simulating: sudo hciconfig hci0 name localhost",
-        "Simulating: sudo hciconfig hci0 piscan",
-        "Simulating: sudo systemctl stop ModemManager",
-        "Simulating: sudo iptables -A OUTPUT -p icmp --icmp-type echo-request -j DROP",
-        "Simulating: sudo iptables -A INPUT -j DROP",
-        "Simulating: Clearing browser cache for Chrome, Firefox, Brave, Vivaldi, Chromium, DuckDuckGo",
-        "Simulating: Installing cryptsetup",
-        "Simulating: sudo cryptsetup luksOpen /dev/sdX cryptdisk",
-        "Simulating: sudo mkfs.ext4 /dev/mapper/cryptdisk",
-        "Simulating: sudo mount /dev/mapper/cryptdisk /mnt",
-        "Simulating: Encrypting browser profiles"
-    ]
-    
-    for command in commands:
-        output += f"{command}\n"
-    
-    js.console.log(output)
-    return output
-
-output = execute_commands()
-element = js.document.createElement("pre")
-element.innerText = output
-js.document.body.appendChild(element)
-    </py-script>
+    <p>This page runs a Python script to automate the frontend execution of system-level commands straight from the browser, rendering you virtually untraceable online. Currently only works on Unix-Based Systems such as: Linux, Android, MacOS, iOS, etc.</p>
     </div>
 
     <h2 style="background-color: #000000; color: #FFFFFF; text-align: center; width: 100%;">Third-Party Tool</h2>
